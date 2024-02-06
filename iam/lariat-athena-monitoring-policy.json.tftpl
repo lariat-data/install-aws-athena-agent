@@ -1,0 +1,107 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "athena:ListDataCatalogs",
+                "athena:ListWorkGroups",
+                "glue:GetTable"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "athena:GetWorkGroup",
+                "glue:GetTables",
+                "s3:CreateBucket",
+                "athena:UpdateWorkGroup",
+                "athena:CreateWorkGroup"
+            ],
+            "Resource": [
+                "arn:aws:s3:::${s3_agent_config_bucket}/*",
+                "arn:aws:s3:::${s3_agent_config_bucket}",
+                "arn:aws:s3:::${s3_query_results_bucket}/*",
+                "arn:aws:s3:::${s3_query_results_bucket}",
+                "arn:aws:glue:*:${aws_account_id}:database/*",
+                "arn:aws:glue:*:${aws_account_id}:catalog",
+                "arn:aws:glue:*:${aws_account_id}:table/*/*",
+                "arn:aws:athena:*:${aws_account_id}:workgroup/*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": [
+                "athena:GetTableMetadata",
+                "athena:StartQueryExecution",
+                "athena:GetQueryResultsStream",
+                "athena:GetQueryResults",
+                "s3:ListBucket",
+                "athena:GetDatabase",
+                "athena:GetDataCatalog",
+                "glue:GetDatabase",
+                "glue:GetDatabases",
+                "athena:ListTagsForResource",
+                "athena:ListQueryExecutions",
+                "athena:ListDatabases",
+                "athena:GetQueryExecution",
+                "athena:ListTableMetadata"
+            ],
+            "Resource": [
+                "arn:aws:s3:::${s3_agent_config_bucket}",
+                "arn:aws:s3:::${s3_query_results_bucket}",
+                "arn:aws:athena:*:${aws_account_id}:workgroup/*",
+                "arn:aws:athena:*:${aws_account_id}:datacatalog/*",
+                "arn:aws:glue:*:${aws_account_id}:database/*",
+                "arn:aws:glue:*:${aws_account_id}:catalog"
+            ]
+        },
+        {
+            "Sid": "VisualEditor3",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "glue:GetPartitions"
+            ],
+            "Resource": [
+                "arn:aws:glue:*:${aws_account_id}:database/*",
+                "arn:aws:glue:*:${aws_account_id}:catalog",
+                "arn:aws:glue:*:${aws_account_id}:table/*/*",
+                "arn:aws:s3:::${s3_query_results_bucket}/*",
+                "arn:aws:s3:::${s3_agent_config_bucket}/*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor4",
+            "Effect": "Allow",
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::*"
+        },
+        {
+            "Sid": "VisualEditor5",
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::*"
+        },
+        {
+            "Sid": "VisualEditor6",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucketMultipartUploads",
+                "s3:AbortMultipartUpload",
+                "s3:ListBucket",
+                "s3:GetBucketLocation",
+                "s3:ListMultipartUploadParts"
+            ],
+            "Resource": [
+                "arn:aws:s3:::${s3_query_results_bucket}/*",
+                "arn:aws:s3:::${s3_query_results_bucket}"
+            ]
+        }
+    ]
+}
